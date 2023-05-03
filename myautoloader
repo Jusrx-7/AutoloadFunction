@@ -1,0 +1,30 @@
+<?php
+# Defining Values
+define("DS" , DIRECTORY_SEPARATOR);
+define("ROOT_PATH" ,dirname(__DIR__) . DS );
+define("APP", ROOT_PATH . 'App' . DS);
+define("CORE", APP . 'Core' . DS);
+define("CONFIG", APP . 'Conf' . DS);
+define("CONTROLLERS", APP . 'Controllers' . DS);
+define("MODELS", APP . 'Models' . DS);
+define("VIEWS", APP . 'Views' . DS);
+define("UPLOADS", ROOT_PATH . 'Public' . DS . 'Uploads' . DS);
+
+# All Directors You Wanna Auto Loading File From There :)
+$Allow = [CONTROLLERS , MODELS , CORE ];
+
+# Make Loop For Directors Allowed
+foreach ($Allow as $Accept) {
+    # 1- Scan Array Of Directors
+    # 2- Check If . and .. Directors set BASED ON UNIX FILE SYSTEM And Remove Them
+    # 3- Check If File Exists And Require It You Can Remove If You Want
+    $NameFile = array_slice(array_diff(scandir($Accept), array('..', '.')), 0);
+    foreach ($NameFile as $File) {
+        if (file_exists($Accept . $File)) {
+            require_once $Accept . $File ;
+        }
+    }
+}
+
+//require_once ROOT_PATH . DS . "App" . DS . "Core" . DS . "App.php" ;
+//require_once ROOT_PATH . DS . "App" . DS . "Core" . DS . "Autoloading.php" ;
