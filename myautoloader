@@ -28,3 +28,4 @@ foreach ($Allow as $Accept) {
 
 //require_once ROOT_PATH . DS . "App" . DS . "Core" . DS . "App.php" ;
 //require_once ROOT_PATH . DS . "App" . DS . "Core" . DS . "Autoloading.php" ;
+?>
